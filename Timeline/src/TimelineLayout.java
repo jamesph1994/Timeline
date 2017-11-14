@@ -17,20 +17,27 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.ArrayList;
 
+
+
 public class TimelineLayout extends JFrame{
 	
 	private static final long	serialVersionUID = 1L;
 	
 	private JLabel timelineLabel;
 	
-	public void line(Graphics g){
-		g.drawLine(0, 480, 960, 70);
+	static ArrayList<Music> music = new ArrayList<>();
 	
-	}
+
 	
 	public TimelineLayout(String title){
 		
 		super(title);
+		
+		music.add(new Music("Usher", "U got it bad", "Pop", 3.01, 2003));
+		music.add(new Music("Coldplay", "Viva la vida", "Rock n Roll", 2.56, 2001));
+		music.add(new Music("Nickleback", "Photograph", "Rock", 2.20, 2005));
+		music.add(new Music("Nickleback", "Photograph", "Rock", 2.00, 1993));
+		music.add(new Music("Nickleback", "Photograph", "Rock", 1.9, 1994));
 		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new GridBagLayout());
@@ -107,7 +114,7 @@ public class TimelineLayout extends JFrame{
 		});
 		
 		//set background colour
-		contentPane.setBackground(Color.cyan);
+		contentPane.setBackground(Color.WHITE);
 		
 		//creating a grid
 		GridBagConstraints c = new GridBagConstraints();

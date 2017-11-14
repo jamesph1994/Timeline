@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class Music {
 
 	private String artist;
@@ -7,9 +8,9 @@ public class Music {
 	private String genre;
 	private double duration;
 	private float year;
+	//private List<Integer> list;
 	
-	
-	ArrayList<Music> twenties = new ArrayList<>();
+	ArrayList<Music> noughties = new ArrayList<>();
 	
 	
 	public Music(String initArtist, String initTitle, String initGenre, double initDuration, float initYear)
@@ -65,11 +66,11 @@ public class Music {
 		
 		
 		
-		twenties.add(new Music("Usher", "U got it bad", "Pop", 3.01, 2003));
-		twenties.add(new Music("Coldplay", "Viva la vida", "Rock n Roll", 2.56, 2001));
-		twenties.add(new Music("Nickleback", "Photograph", "Rock", 2.20, 2005));
+		noughties.add(new Music("Usher", "U got it bad", "Pop", 3.01, 2003));
+		noughties.add(new Music("Coldplay", "Viva la vida", "Rock n Roll", 2.56, 2001));
+		noughties.add(new Music("Nickleback", "Photograph", "Rock", 2.20, 2005));
 		
-	}
+	} 
 	
 	
 }

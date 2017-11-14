@@ -21,6 +21,11 @@ public class musicLayout extends JFrame{
 	private static final long	serialVersionUID = 1L;
 	
 	private JLabel eraLabel;
+	private JLabel artistLabel;
+	private JLabel titleLabel;
+	private JLabel genreLabel;
+	private JLabel durationLabel;
+	private JLabel yearLabel;
 	
 	public musicLayout(String title){
 		
@@ -29,33 +34,43 @@ public class musicLayout extends JFrame{
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new GridBagLayout());
 		
-		setContentPane(contentPane);
 		
-		//new label
-		eraLabel = new JLabel("Music Era");
+		//d JLabels
+		eraLabel = new JLabel("MUSIC ERA");
+		artistLabel = new JLabel("Artist: " +TimelineLayout.music.get(0).getArtist());
+		titleLabel = new JLabel("Title: " +TimelineLayout.music.get(0).getTitle());
+		genreLabel = new JLabel("Genre: " + TimelineLayout.music.get(0).getGenre());
+		durationLabel = new JLabel("Duration: " + Double.toString(TimelineLayout.music.get(0).getDuration()));
+		yearLabel = new JLabel("Year: " + Float.toString(TimelineLayout.music.get(0).getYear()));
+		
 		
 		//creating buttons
-		JButton navRightButton = new JButton("Next Record");
+		JButton navRightButton = new JButton(">");
 		navRightButton.setActionCommand("Next Record");
 		
-		JButton navLeftButton = new JButton("Previous Record");
+		JButton navLeftButton = new JButton("<");
 		navLeftButton.setActionCommand("Previous Record");
 
-		JButton navLastButton = new JButton("Last Record");
+		JButton navLastButton = new JButton(">>");
 		navLastButton.setActionCommand("Last Record");
 		
-		JButton navStartButton = new JButton("First Record");
+		JButton navStartButton = new JButton("<<");
 		navStartButton.setActionCommand("First Record");
 		
 		JButton returnButton = new JButton("Return");
 		returnButton.setActionCommand("Return");
+		
 		
 		//Actions for buttons.
 		navRightButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e){
 				
-	
+				for(int i=0; i < TimelineLayout.music.size(); i++){
+					int next = i+1;
+					System.out.println(TimelineLayout.music.get(next).getArtist());
+				//	navigateRecords();
+				}
 			}
 		});
 		
@@ -63,7 +78,10 @@ public class musicLayout extends JFrame{
 			
 			public void actionPerformed(ActionEvent e){
 				
-	
+				for(int i=0; i < TimelineLayout.music.size(); i++){
+					i++;
+					navigateRecords();
+				}
 			}
 		});
 
@@ -91,54 +109,93 @@ public class musicLayout extends JFrame{
 			}
 		});
 		
+		//set a background colour for the window
+		contentPane.setBackground(Color.WHITE);
 		
-		contentPane.setBackground(Color.cyan);
-		
+		//Position labels and buttons using grid
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 4;
-		c.gridy = 2;
-		c.insets = new Insets(10, 5, 10, 5);
-		contentPane.add(navRightButton, c);
-		
-		c.gridx = 3;
-		c.gridy = 2;
-		contentPane.add(navLeftButton, c);
-		
-		c.gridx = 5;
-		c.gridy = 2;
-		contentPane.add(navLastButton, c);
-		
+		c.fill = GridBagConstraints.PAGE_START;
 		c.gridx = 2;
-		c.gridy = 2;
-		contentPane.add(navStartButton, c);
-		
-		c.gridx = 1;
-		c.gridy = 3;
-		contentPane.add(returnButton, c);
-		
-		c.gridx = 3;
 		c.gridy = 0;
+		c.insets = new Insets(20, 10, 20, 40);
 		c.gridwidth = 2;
 		contentPane.add(eraLabel, c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 2;
+		c.gridwidth = 2;
+		contentPane.add(artistLabel, c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 3;
+		c.gridwidth = 2;
+		contentPane.add(titleLabel, c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 4;
+		c.gridwidth = 2;
+		contentPane.add(durationLabel, c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 5;
+		c.gridwidth = 2;
+		contentPane.add(genreLabel, c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 6;
+		c.gridwidth = 2;
+		contentPane.add(yearLabel, c);
+		
+		GridBagConstraints c2 = new GridBagConstraints();
+		
+		
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridheight = 5;
+		
+		c2.gridx = 7;
+		c2.gridy = 2;
+		c2.insets = new Insets(20, 10, 20, 5);
+		contentPane.add(navRightButton, c2);
+		
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 5;
+		c2.gridy = 2;
+		contentPane.add(navLeftButton, c2);
+		
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 8;
+		c2.gridy = 2;
+		contentPane.add(navLastButton, c2);
+		
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 4;
+		c2.gridy = 2;
+		contentPane.add(navStartButton, c2);
+		
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 9;
+		c2.gridy = 6;
+		contentPane.add(returnButton, c2);
+		
+		
+		setContentPane(contentPane);
+		
 	}
+	public void navigateRecords(){
+		for(int i=0; i < TimelineLayout.music.size(); i++){
+		eraLabel = new JLabel("MUSIC ERA");
+		artistLabel = new JLabel("Artist: " +TimelineLayout.music.get(i).getArtist());
+		titleLabel = new JLabel("Title: " +TimelineLayout.music.get(i).getTitle());
+		genreLabel = new JLabel("Genre: " + TimelineLayout.music.get(i).getGenre());
+		durationLabel = new JLabel("Duration: " + Double.toString(TimelineLayout.music.get(i).getDuration()));
+		yearLabel = new JLabel("Year: " + Float.toString(TimelineLayout.music.get(i).getYear()));
+		}
+		}
 	
-	public void musicWindow(){
-		
-		musicLayout window = new musicLayout("");
-		
-		//This tells Java we want to Exit the application on close
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		// Set the window position and size
-		window.setBounds(200, 200, 600, 400);
-		
-		// Optimise layout
-		window.pack();
-		
-		// Make the new JFrame visible
-		window.setVisible(true);
-		
-	}
 }

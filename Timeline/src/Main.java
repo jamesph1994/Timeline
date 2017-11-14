@@ -74,19 +74,16 @@ public class Main {
 					public void run() {
 						createWindow();
 					
-					ArrayList<Music> wd = new ArrayList<>();
 					
-					wd.add(new Music("ss","sdsd", "sads", 22.3, 1992));
-					wd.add(new Music("ss","sdsd", "sads", 22.4, 1992));
-				
-					
-					
-					for(int i=0; i < wd.size(); i++){
-						System.out.println(wd.get(i).getDuration());
+					for(int i=0; i < TimelineLayout.music.size(); i++){
 						
+						if(TimelineLayout.music.get(i).getYear() <= 2000){
+							
+							System.out.println(TimelineLayout.music.get(i).getDuration());
+						}
 					}
- 					}
-				}
+ 				}
+			}
 				
 		);
 
