@@ -35,7 +35,7 @@ public class TimelineLayout extends JFrame{
 		
 		setContentPane(contentPane);
 		
-		timelineLabel = new JLabel("Timeline");
+		timelineLabel = new JLabel("Music Era Timeline");
 		
 		JButton sixtiesButton = new JButton("60s");
 		sixtiesButton.setActionCommand("60s");
@@ -52,8 +52,17 @@ public class TimelineLayout extends JFrame{
 		JButton twentiesButton = new JButton("00s");
 		twentiesButton.setActionCommand("00s");
 		
-		JButton addButton = new JButton("Add Record");
-		addButton.setActionCommand("Add");
+		JButton addButton = new JButton("Add Song");
+		addButton.setActionCommand("Add Song");
+		
+		JButton addEraButton = new JButton("Add Era");
+		addEraButton.setActionCommand("Add Era");
+		
+		JButton saveButton = new JButton("Save");
+		saveButton.setActionCommand("Save");
+		
+		JButton loadButton = new JButton("Load");
+		loadButton.setActionCommand("Load");
 			
 			
 		sixtiesButton.addActionListener(new ActionListener(){
@@ -142,18 +151,36 @@ public class TimelineLayout extends JFrame{
 		c.gridy = 2;
 		contentPane.add(twentiesButton, c);
 		
-		
-		c.gridx = 3;
+		c.fill = GridBagConstraints.CENTER;
+		c.gridx = 2;
 		c.gridy = 0;
-		c.gridwidth = 2;
+		c.gridwidth = 3;
+		c.insets = new Insets(10, 5, 40, 5);
 		contentPane.add(timelineLabel, c);
 		
-		GridBagConstraints c2 = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = 7;
+		c.gridwidth = 2;
+		c.insets = new Insets(70, 5, 10, 5);
+		contentPane.add(addButton, c);
 		
-		c2.gridx = 3;
-		c2.gridy = 5;
-		c2.insets = new Insets(10, 5, 10, 5);
-		contentPane.add(addButton, c2);
+		c.gridx = 4;
+		c.gridy = 7;
+		c.gridwidth = 2;
+		c.insets = new Insets(70, 5, 10, 5);
+		contentPane.add(addEraButton, c);
+		
+		c.gridx = 1;
+		c.gridy = 8;
+		c.gridwidth = 2;
+		c.insets = new Insets(15, 5, 10, 5);
+		contentPane.add(saveButton, c);
+		
+		c.gridx = 4;
+		c.gridy = 8;
+		c.gridwidth = 2;
+		c.insets = new Insets(15, 5, 10, 5);
+		contentPane.add(loadButton, c);
 		
 		
 	}

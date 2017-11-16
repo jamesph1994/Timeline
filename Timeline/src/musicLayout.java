@@ -137,70 +137,73 @@ public class musicLayout extends JFrame{
 		c.fill = GridBagConstraints.PAGE_START;
 		c.gridx = 2;
 		c.gridy = 0;
-		c.insets = new Insets(20, 10, 20, 40);
+		c.insets = new Insets(10, 10, 20, 15);
 		c.gridwidth = 2;
 		contentPane.add(eraLabel, c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 2;
-		c.gridwidth = 2;
+		c.gridwidth = 5;
 		contentPane.add(artistLabel, c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 3;
-		c.gridwidth = 2;
+		c.gridwidth = 5;
 		contentPane.add(titleLabel, c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 4;
-		c.gridwidth = 2;
+		c.gridwidth = 5;
 		contentPane.add(durationLabel, c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 5;
-		c.gridwidth = 2;
+		c.gridwidth = 5;
 		contentPane.add(genreLabel, c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 6;
-		c.gridwidth = 2;
+		c.gridwidth = 5;
 		contentPane.add(yearLabel, c);
 		
-		GridBagConstraints c2 = new GridBagConstraints();
+	
+		c.gridx = 2;
+		c.gridy = 7;
+		c.ipady = 0;   
+		c.gridwidth = 1;
+		contentPane.add(navRightButton, c);
 		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 1;
+		c.gridy = 7;
+		c.ipady = 0;       //reset to default
+		c.gridwidth = 1;
+		contentPane.add(navLeftButton, c);
 		
-		c2.fill = GridBagConstraints.HORIZONTAL;
-		c2.gridheight = 5;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 3;
+		c.ipady = 0;       //reset to default
+		c.gridwidth = 1;
+		c.gridy = 7;
+		contentPane.add(navLastButton, c);
 		
-		c2.gridx = 7;
-		c2.gridy = 2;
-		c2.insets = new Insets(20, 10, 20, 5);
-		contentPane.add(navRightButton, c2);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 7;
+		c.ipady = 0;       //reset to default
+		c.gridwidth = 1;
+		contentPane.add(navStartButton, c);
 		
-		c2.fill = GridBagConstraints.HORIZONTAL;
-		c2.gridx = 5;
-		c2.gridy = 2;
-		contentPane.add(navLeftButton, c2);
-		
-		c2.fill = GridBagConstraints.HORIZONTAL;
-		c2.gridx = 8;
-		c2.gridy = 2;
-		contentPane.add(navLastButton, c2);
-		
-		c2.fill = GridBagConstraints.HORIZONTAL;
-		c2.gridx = 4;
-		c2.gridy = 2;
-		contentPane.add(navStartButton, c2);
-		
-		c2.fill = GridBagConstraints.HORIZONTAL;
-		c2.gridx = 9;
-		c2.gridy = 6;
-		contentPane.add(returnButton, c2);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.PAGE_END;
+		c.gridx = 11;
+		c.gridy = 8;
+		contentPane.add(returnButton, c);
 		
 		
 		setContentPane(contentPane);

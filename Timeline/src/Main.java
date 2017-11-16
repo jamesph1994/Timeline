@@ -44,7 +44,7 @@ public class Main {
 		
 
 		// Setup font
-		setupUIFont(new FontUIResource(new Font("Arial", Font.PLAIN, 22)));
+		setupUIFont(new FontUIResource(new Font("Century Gothic", Font.PLAIN, 20)));
 		
 		
 		// Set system look and feel
