@@ -13,13 +13,16 @@ public class Main {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Set the window position and size
-		window.setBounds(700, 200, 600, 400);
+		window.setPreferredSize(new Dimension(500, 420));
 		
-		// Optimise layout
-		window.pack();
-		
-		// Make the new JFrame visible
-		window.setVisible(true);
+		//Optimise Layout
+	    window.pack();
+	    
+	    //Centre window on the screen
+	    window.setLocationRelativeTo(null);
+	    
+	    //Set window to be visible
+	    window.setVisible(true);
 			
 	}
 	
