@@ -1,31 +1,36 @@
 import java.awt.event.ActionEvent;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class musicLayout extends JFrame{
 
 	private static final long	serialVersionUID = 1L;
 	
+	//declaring JLabels
 	private JLabel eraLabel;
 	private JLabel artistLabel;
 	private JLabel titleLabel;
 	private JLabel genreLabel;
 	private JLabel durationLabel;
 	private JLabel yearLabel;
+	private int pos = 0; 
+	
+	public void navigateRecords(int i){
+		eraLabel.setText("MUSIC ERA");
+		artistLabel.setText("Artist: " +TimelineLayout.music.get(i).getArtist());
+		titleLabel.setText("Title: " +TimelineLayout.music.get(i).getTitle());
+		genreLabel.setText("Genre: " + TimelineLayout.music.get(i).getGenre());
+		durationLabel.setText("Duration: " + Double.toString(TimelineLayout.music.get(i).getDuration()));
+		yearLabel.setText("Year: " + Float.toString(TimelineLayout.music.get(i).getYear()));
+	}
 	
 	public musicLayout(String title){
 		
@@ -35,7 +40,7 @@ public class musicLayout extends JFrame{
 		contentPane.setLayout(new GridBagLayout());
 		
 		
-		//d JLabels
+		//declaring JLabels with starting values
 		eraLabel = new JLabel("MUSIC ERA");
 		artistLabel = new JLabel("Artist: " +TimelineLayout.music.get(0).getArtist());
 		titleLabel = new JLabel("Title: " +TimelineLayout.music.get(0).getTitle());
@@ -66,42 +71,56 @@ public class musicLayout extends JFrame{
 			
 			public void actionPerformed(ActionEvent e){
 				
-				for(int i=0; i < TimelineLayout.music.size(); i++){
-					int next = i+1;
-					System.out.println(TimelineLayout.music.get(next).getArtist());
-				//	navigateRecords();
+				pos++;
+				
+				if(pos < TimelineLayout.music.size()){
+					navigateRecords(pos);
+				}
+				else{
+					pos = TimelineLayout.music.size() - 1;
+					navigateRecords(pos);
+					JOptionPane.showMessageDialog(null, "END");
 				}
 			}
 		});
 		
-		navRightButton.addActionListener(new ActionListener(){
+		navLeftButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e){
 				
-				for(int i=0; i < TimelineLayout.music.size(); i++){
-					i++;
-					navigateRecords();
+				pos --;
+				
+				if(pos > 0){
+					navigateRecords(pos);
+				}
+				else{
+					pos = 0;
+					navigateRecords(pos);
+					JOptionPane.showMessageDialog(null, "END");
 				}
 			}
 		});
 
-		navRightButton.addActionListener(new ActionListener(){
+		
+		navStartButton.addActionListener(new ActionListener(){
 	
 			public void actionPerformed(ActionEvent e){
-		
-
+				
+				//navigate to the first element of the arrayList
+				navigateRecords(0);
 			}
 		});
 
-		navRightButton.addActionListener(new ActionListener(){
-	
+		navLastButton.addActionListener(new ActionListener(){
+			
 			public void actionPerformed(ActionEvent e){
 		
-
+				pos = TimelineLayout.music.size() - 1;
+				navigateRecords(pos);
 			}
 		});
-
-		navRightButton.addActionListener(new ActionListener(){
+		
+		returnButton.addActionListener(new ActionListener(){
 	
 			public void actionPerformed(ActionEvent e){
 		
@@ -187,15 +206,6 @@ public class musicLayout extends JFrame{
 		setContentPane(contentPane);
 		
 	}
-	public void navigateRecords(){
-		for(int i=0; i < TimelineLayout.music.size(); i++){
-		eraLabel = new JLabel("MUSIC ERA");
-		artistLabel = new JLabel("Artist: " +TimelineLayout.music.get(i).getArtist());
-		titleLabel = new JLabel("Title: " +TimelineLayout.music.get(i).getTitle());
-		genreLabel = new JLabel("Genre: " + TimelineLayout.music.get(i).getGenre());
-		durationLabel = new JLabel("Duration: " + Double.toString(TimelineLayout.music.get(i).getDuration()));
-		yearLabel = new JLabel("Year: " + Float.toString(TimelineLayout.music.get(i).getYear()));
-		}
-		}
+	
 	
 }

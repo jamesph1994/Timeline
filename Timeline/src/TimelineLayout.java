@@ -1,23 +1,14 @@
 import java.awt.event.ActionEvent;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.ArrayList;
-
-
 
 public class TimelineLayout extends JFrame{
 	
@@ -61,14 +52,16 @@ public class TimelineLayout extends JFrame{
 		JButton twentiesButton = new JButton("00s");
 		twentiesButton.setActionCommand("00s");
 		
+		JButton addButton = new JButton("Add Record");
+		addButton.setActionCommand("Add");
 			
 			
 		sixtiesButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e){
 				
-				Sixties six = new Sixties();
-				six.createWindow();
+				Decades.sixtiesWindow();
+				
 			}
 		});
 		
@@ -76,8 +69,7 @@ public class TimelineLayout extends JFrame{
 			
 			public void actionPerformed(ActionEvent e){
 				
-				Seventies seven = new Seventies();
-				seven.createWindow();
+				Decades.seventiesWindow();
 	
 			}
 		});
@@ -86,9 +78,7 @@ public class TimelineLayout extends JFrame{
 	
 			public void actionPerformed(ActionEvent e){
 		
-				Eighties eight = new Eighties();
-				eight.createWindow();
-
+				Decades.eightiesWindow();
 			}
 		});
 
@@ -96,8 +86,7 @@ public class TimelineLayout extends JFrame{
 	
 			public void actionPerformed(ActionEvent e){
 	
-				Nineties nine = new Nineties();
-				nine.createWindow();
+				Decades.ninetiesWindow();
 
 			}
 		});
@@ -106,9 +95,18 @@ public class TimelineLayout extends JFrame{
 	
 			public void actionPerformed(ActionEvent e){
 		
-				Noughties naught = new Noughties();
-				naught.createWindow();
 				
+				Decades.noughtiesWindow();
+				
+				
+			}
+		});
+		
+		addButton.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				addTrackLayout.addWindow();
 				
 			}
 		});
@@ -149,6 +147,13 @@ public class TimelineLayout extends JFrame{
 		c.gridy = 0;
 		c.gridwidth = 2;
 		contentPane.add(timelineLabel, c);
+		
+		GridBagConstraints c2 = new GridBagConstraints();
+		
+		c2.gridx = 3;
+		c2.gridy = 5;
+		c2.insets = new Insets(10, 5, 10, 5);
+		contentPane.add(addButton, c2);
 		
 		
 	}
