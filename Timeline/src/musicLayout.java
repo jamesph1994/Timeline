@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,33 +24,166 @@ public class musicLayout extends JFrame{
 	private JLabel durationLabel;
 	private JLabel yearLabel;
 	private int pos = 0; 
+	ArrayList<Music> era = TimelineLayout.music;
+	ArrayList<Music> songs;
+	
 	
 	public void navigateRecords(int i){
-		eraLabel.setText("MUSIC ERA");
-		artistLabel.setText("Artist: " +TimelineLayout.music.get(i).getArtist());
-		titleLabel.setText("Title: " +TimelineLayout.music.get(i).getTitle());
-		genreLabel.setText("Genre: " + TimelineLayout.music.get(i).getGenre());
-		durationLabel.setText("Duration: " + Double.toString(TimelineLayout.music.get(i).getDuration()));
-		yearLabel.setText("Year: " + Float.toString(TimelineLayout.music.get(i).getYear()));
+
+		artistLabel.setText("Artist: " + songs.get(i).getArtist());
+		titleLabel.setText("Title: " + songs.get(i).getTitle());
+		genreLabel.setText("Genre: " + songs.get(i).getGenre());
+		durationLabel.setText("Duration: " + Double.toString(songs.get(i).getDuration()));
+		yearLabel.setText("Year: " + songs.get(i).getYear());
 	}
+	
+	public void sixtiesMusic(String timePeriod)
+	{
+		songs = new ArrayList<>();
+		
+		for (Music song:era)
+		{
+			if (song.getYear() >= 1960 && song.getYear() <= 1969)
+			{
+				songs.add(song);
+			}	
+		}
+	}
+	
+	public void seventiesMusic(String timePeriod)
+	{
+		songs = new ArrayList<>();
+		
+		for (Music song:era)
+		{
+			if (song.getYear() >= 1970 && song.getYear() <= 1979)
+			{
+				songs.add(song);
+			}	
+		}
+	}
+	
+	public void eightiesMusic(String timePeriod)
+	{
+		songs = new ArrayList<>();
+		
+		for (Music song:era)
+		{
+			if (song.getYear() >= 1980 && song.getYear() <= 1989)
+			{
+				songs.add(song);
+			}	
+		}
+	}
+	
+	public void ninetiesMusic(String timePeriod)
+	{
+		songs = new ArrayList<>();
+		
+		for (Music song:era)
+		{
+			if (song.getYear() >= 1990 && song.getYear() <= 1999)
+			{
+				songs.add(song);
+			}	
+		}
+	}
+	
+	public void noughtiesMusic(String timePeriod)
+	{
+		songs = new ArrayList<>();
+		
+		for (Music song:era)
+		{
+			if (song.getYear() >= 2000 && song.getYear() <= 2009)
+			{
+				songs.add(song);
+			}	
+		}
+	}
+	
 	
 	public musicLayout(String title){
 		
-		super (title);
+		super (title); 
 		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new GridBagLayout());
+		;
 		
+			//If the windows title is Sixties, then run this statement.
+			if(title.equals("Sixties")){
+			
+				sixtiesMusic("60");
+			
+				// Are there actually any 60s songs.	
+				eraLabel = new JLabel("Sixties");
+				artistLabel = new JLabel("Artist: " +songs.get(0).getArtist());
+				titleLabel = new JLabel("Title: " +songs.get(0).getTitle());
+				genreLabel = new JLabel("Genre: " + songs.get(0).getGenre());
+				durationLabel = new JLabel("Duration: " + Double.toString(songs.get(0).getDuration()));
+				yearLabel = new JLabel("Year: " + songs.get(0).getYear());
+			}
+			
+			else if(title.equals("Seventies")){
+						
+				seventiesMusic("70");
+				
+				// Are there actually any 70s songs.	
+				eraLabel = new JLabel("Seventies");
+				artistLabel = new JLabel("Artist: " +songs.get(0).getArtist());
+				titleLabel = new JLabel("Title: " +songs.get(0).getTitle());
+				genreLabel = new JLabel("Genre: " + songs.get(0).getGenre());
+				durationLabel = new JLabel("Duration: " + Double.toString(songs.get(0).getDuration()));
+				yearLabel = new JLabel("Year: " + songs.get(0).getYear());
+				}
+				
+			else if(title.equals("Eighties")){
+						
+				eightiesMusic("80");
+				
+				// Are there actually any 80s songs.	
+				eraLabel = new JLabel("Eighties");
+				artistLabel = new JLabel("Artist: " +songs.get(0).getArtist());
+				titleLabel = new JLabel("Title: " +songs.get(0).getTitle());
+				genreLabel = new JLabel("Genre: " + songs.get(0).getGenre());
+				durationLabel = new JLabel("Duration: " + Double.toString(songs.get(0).getDuration()));
+				yearLabel = new JLabel("Year: " + songs.get(0).getYear());
+				}
+				
+				
+			else if(title.equals("Nineties")){
+				
+				ninetiesMusic("90");
+						
+					// Are there actually any 90s songs.
+					eraLabel = new JLabel("Nineties");
+					artistLabel = new JLabel("Artist: " +songs.get(0).getArtist());
+					titleLabel = new JLabel("Title: " +songs.get(0).getTitle());
+					genreLabel = new JLabel("Genre: " + songs.get(0).getGenre());
+					durationLabel = new JLabel("Duration: " + Double.toString(songs.get(0).getDuration()));
+					yearLabel = new JLabel("Year: " + songs.get(0).getYear());
+					}
+				
+			else if(title.equals("Noughties")){
+						
+				noughtiesMusic("00");
+				
+					// Are there actually any 00s songs.	
+					eraLabel = new JLabel("Noughties");
+					artistLabel = new JLabel("Artist: " +songs.get(0).getArtist());
+					titleLabel = new JLabel("Title: " +songs.get(0).getTitle());
+					genreLabel = new JLabel("Genre: " + songs.get(0).getGenre());
+					durationLabel = new JLabel("Duration: " + Double.toString(songs.get(0).getDuration()));
+					yearLabel = new JLabel("Year: " + songs.get(0).getYear());
+					}
+				
+			else{
+					JOptionPane.showMessageDialog(null, "No records in Era");
+				}
+			
 		
-		//declaring JLabels with starting values
-		eraLabel = new JLabel("MUSIC ERA");
-		artistLabel = new JLabel("Artist: " +TimelineLayout.music.get(0).getArtist());
-		titleLabel = new JLabel("Title: " +TimelineLayout.music.get(0).getTitle());
-		genreLabel = new JLabel("Genre: " + TimelineLayout.music.get(0).getGenre());
-		durationLabel = new JLabel("Duration: " + Double.toString(TimelineLayout.music.get(0).getDuration()));
-		yearLabel = new JLabel("Year: " + Float.toString(TimelineLayout.music.get(0).getYear()));
-		
-		
+
 		//creating buttons
 		JButton navRightButton = new JButton(">");
 		navRightButton.setActionCommand("Next Record");
@@ -73,13 +208,13 @@ public class musicLayout extends JFrame{
 				
 				pos++;
 				
-				if(pos < TimelineLayout.music.size()){
+				if(pos < songs.size()){
 					navigateRecords(pos);
 				}
 				else{
-					pos = TimelineLayout.music.size() - 1;
+					pos = songs.size() - 1;
 					navigateRecords(pos);
-					JOptionPane.showMessageDialog(null, "END");
+					JOptionPane.showMessageDialog(null, "No more songs");
 				}
 			}
 		});
@@ -96,7 +231,7 @@ public class musicLayout extends JFrame{
 				else{
 					pos = 0;
 					navigateRecords(pos);
-					JOptionPane.showMessageDialog(null, "END");
+					JOptionPane.showMessageDialog(null, "No more songs");
 				}
 			}
 		});
@@ -115,7 +250,7 @@ public class musicLayout extends JFrame{
 			
 			public void actionPerformed(ActionEvent e){
 		
-				pos = TimelineLayout.music.size() - 1;
+				pos = era.size() - 1;
 				navigateRecords(pos);
 			}
 		});

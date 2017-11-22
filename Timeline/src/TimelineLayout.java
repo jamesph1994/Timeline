@@ -19,7 +19,6 @@ public class TimelineLayout extends JFrame{
 	static ArrayList<Music> music = new ArrayList<>();
 	
 
-	
 	public TimelineLayout(String title){
 		
 		super(title);
@@ -90,6 +89,7 @@ public class TimelineLayout extends JFrame{
 				Decades.eightiesWindow();
 			}
 		});
+		
 
 		ninetiesButton.addActionListener(new ActionListener(){
 	

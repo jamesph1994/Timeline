@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +33,7 @@ public class addTrackLayout extends JFrame{
 	private String addTitle;
 	private String addGenre;
 	private double addDuration;
-	private float addYear;
+	private int addYear;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -55,12 +57,14 @@ public class addTrackLayout extends JFrame{
 		duration = new JTextField(15);
 		year = new JTextField(15);
 		
+		ArrayList<Music> music = TimelineLayout.music;
+		
 		JButton addButton = new JButton("Add");
 		addButton.setActionCommand("add");
-		
-		
-		//Actions for buttons.
-				addButton.addActionListener(new ActionListener(){
+	
+	    
+			//Actions for buttons.
+			addButton.addActionListener(new ActionListener(){
 					
 					public void actionPerformed(ActionEvent e){
 						
@@ -68,20 +72,24 @@ public class addTrackLayout extends JFrame{
 						addTitle = trackTitle.getText();
 						addGenre = genre.getText();
 						addDuration = Double.parseDouble(duration.getText());
-						addYear = Float.parseFloat(year.getText());
+						addYear = Integer.parseInt(year.getText());
 						
 						Music m = new Music(addArtist, addTitle, addGenre, addDuration, addYear);
+				
+
+						if(music.contains(m.getArtist())){
 						
-						if(TimelineLayout.music.contains(addArtist + addTitle + addGenre + addDuration + addYear)){
-							
-							JOptionPane.showMessageDialog(null,"already exists");
+							JOptionPane.showMessageDialog(null, "already exists");
 						}
 						else{
 							
-							TimelineLayout.music.add(m);		
+							music.add(m);		
 							JOptionPane.showMessageDialog(null,"added to db");
 						}
+							
+						
 					}	
+					
 				});
 		
 		//set a background colour for the window

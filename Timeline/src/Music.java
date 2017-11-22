@@ -4,13 +4,10 @@ public class Music {
 	private String title;
 	private String genre;
 	private double duration;
-	private float year;
-	//private List<Integer> list;
+	private int year;
 	
 	
-	
-	
-	public Music(String initArtist, String initTitle, String initGenre, double initDuration, float initYear)
+	public Music(String initArtist, String initTitle, String initGenre, double initDuration, int initYear)
 	{	
 		artist =  initArtist;
 		title= initTitle;
@@ -19,8 +16,29 @@ public class Music {
 		year = initYear;
 	}
 	
+
+	
+	public boolean equals(Object object2) {
+        if(artist == object2) { 
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean equals2(Object object2) {
+        if(artist.equals(object2.equals(artist))) {
+            return true;
+        }
+        else return false;
+    }
+	
 	public String getArtist() {
 		return artist;
+	}
+	
+	public int hashCode()
+	{
+		return 31* artist.hashCode();
 	}
 
 	public void setArtist(String artist) {
@@ -43,11 +61,11 @@ public class Music {
 		this.duration = duration;
 	}
 
-	public float getYear() {
+	public int getYear() {
 		return year;
 	}
 
-	public void setYear(float year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
