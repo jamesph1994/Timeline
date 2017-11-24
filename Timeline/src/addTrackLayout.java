@@ -35,6 +35,8 @@ public class addTrackLayout extends JFrame{
 	private double addDuration;
 	private int addYear;
 	
+	ArrayList<Music> songs;
+	
 	private static final long serialVersionUID = 1L;
 
 	public addTrackLayout(String title){
@@ -75,19 +77,22 @@ public class addTrackLayout extends JFrame{
 						addYear = Integer.parseInt(year.getText());
 						
 						Music m = new Music(addArtist, addTitle, addGenre, addDuration, addYear);
-				
-
-						if(music.contains(m.getArtist())){
 						
-							JOptionPane.showMessageDialog(null, "already exists");
-						}
-						else{
-							
-							music.add(m);		
-							JOptionPane.showMessageDialog(null,"added to db");
-						}
-							
 						
+							if(addArtist.isEmpty() || addTitle.isEmpty() || addGenre.isEmpty() || duration.getText().isEmpty() || year.getText().isEmpty())
+							{
+								JOptionPane.showMessageDialog(null, "Please fill in all empty fields.");	
+							}
+							else if (!(music.contains(m)))
+							{
+								music.add(m);
+								JOptionPane.showMessageDialog(null, "Track added");						
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "Track already exists");
+							}
+							
 					}	
 					
 				});

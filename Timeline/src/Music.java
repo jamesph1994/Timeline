@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Music {
 
 	private String artist;
@@ -16,30 +18,46 @@ public class Music {
 		year = initYear;
 	}
 	
-
+	//Method that pulls the title and question if it exists.
+	@Override 
+	public boolean equals(Object obj)	{
+				 
+		if (this == obj) 
+		{
+			return true;
+		}
+	 
+		else if (obj == null)
+		{
+			return false;		        
+		}
+	 
+		else if (obj instanceof Music) 
+		{
+			Music music = (Music) obj;
+				 
+			if (music.getArtist().equals(this.getArtist()) && (music.getTitle().equals(this.getTitle())))		 
+			{
+				return true;
+			}
+		 }
+			return false;
+	}
 	
-	public boolean equals(Object object2) {
-        if(artist == object2) { 
-            return true;
-        }
-        else return false;
-    }
-
-    public boolean equals2(Object object2) {
-        if(artist.equals(object2.equals(artist))) {
-            return true;
-        }
-        else return false;
-    }
+	@Override
+	public int hashCode()
+	{
+		int hash = 7;
+		hash = 31 * hash + Objects.hashCode(this.getArtist());
+		hash = 31 * hash + Objects.hashCode(this.getTitle());
+		return hash;
+	}
 	
 	public String getArtist() {
 		return artist;
 	}
 	
-	public int hashCode()
-	{
-		return 31* artist.hashCode();
-	}
+
 
 	public void setArtist(String artist) {
 		this.artist = artist;

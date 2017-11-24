@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
@@ -45,7 +47,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-
 		// Setup font
 		setupUIFont(new FontUIResource(new Font("Century Gothic", Font.PLAIN, 20)));
 		

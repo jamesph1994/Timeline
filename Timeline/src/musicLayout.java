@@ -40,6 +40,9 @@ public class musicLayout extends JFrame{
 	public void sixtiesMusic(String timePeriod)
 	{
 		songs = new ArrayList<>();
+		try
+		{
+			
 		
 		for (Music song:era)
 		{
@@ -47,6 +50,11 @@ public class musicLayout extends JFrame{
 			{
 				songs.add(song);
 			}	
+		}
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, "No records exist in this era");
 		}
 	}
 	
@@ -115,7 +123,9 @@ public class musicLayout extends JFrame{
 			if(title.equals("Sixties")){
 			
 				sixtiesMusic("60");
-			
+				try
+				{
+				
 				// Are there actually any 60s songs.	
 				eraLabel = new JLabel("Sixties");
 				artistLabel = new JLabel("Artist: " +songs.get(0).getArtist());
@@ -123,6 +133,10 @@ public class musicLayout extends JFrame{
 				genreLabel = new JLabel("Genre: " + songs.get(0).getGenre());
 				durationLabel = new JLabel("Duration: " + Double.toString(songs.get(0).getDuration()));
 				yearLabel = new JLabel("Year: " + songs.get(0).getYear());
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "nothing exists");
+				}
 			}
 			
 			else if(title.equals("Seventies")){
