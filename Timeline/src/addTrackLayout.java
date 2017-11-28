@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -13,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.google.gson.Gson; //importing Gson from Google
 
 public class addTrackLayout extends JFrame{
 	
@@ -35,7 +38,7 @@ public class addTrackLayout extends JFrame{
 	private double addDuration;
 	private int addYear;
 	
-	ArrayList<Music> songs;
+	// ArrayList<Music> songs;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -86,7 +89,8 @@ public class addTrackLayout extends JFrame{
 							else if (!(music.contains(m)))
 							{
 								music.add(m);
-								JOptionPane.showMessageDialog(null, "Track added");						
+								JOptionPane.showMessageDialog(null, "Track added");		
+								
 							}
 							else
 							{

@@ -1,3 +1,4 @@
+
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -24,7 +25,7 @@ public class musicLayout extends JFrame{
 	private JLabel durationLabel;
 	private JLabel yearLabel;
 	private int pos = 0; 
-	ArrayList<Music> era = TimelineLayout.music;
+	ArrayList<Music> era = TimelineLayout.myMusicList;
 	ArrayList<Music> songs;
 	
 	
