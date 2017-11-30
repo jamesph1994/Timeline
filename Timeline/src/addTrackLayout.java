@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -9,19 +8,18 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.google.gson.Gson; //importing Gson from Google
-
 public class addTrackLayout extends JFrame{
 	
 	private JTextField artist; 
 	private JTextField trackTitle;
-	private JTextField genre;
+	private JComboBox<String> genre;
 	private JTextField duration;
 	private JTextField year;
 	
@@ -49,16 +47,20 @@ public class addTrackLayout extends JFrame{
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new GridBagLayout());
 		
+		String[] genreString = {"Pop", "Rock", "Jazz", "Country", "Rap", "Dance"};
+		
+		//JComboBox<String> genreBox = new JComboBox<String>(genreString);
+		
 		addLabel = new JLabel("Add Record");
 		artistLabel = new JLabel("Artist Name:");
 		titleLabel = new JLabel("Track Title:");
-		genreLabel = new JLabel("Music Genre:");
+		genreLabel = new JLabel("Genre:");
 		durationLabel = new JLabel("Duration:");
 		yearLabel = new JLabel("Release Year:");
 		
 		artist = new JTextField(15);
 		trackTitle = new JTextField(15);
-		genre = new JTextField(15);
+		genre = new JComboBox<String>(genreString);
 		duration = new JTextField(15);
 		year = new JTextField(15);
 		
@@ -72,33 +74,37 @@ public class addTrackLayout extends JFrame{
 			addButton.addActionListener(new ActionListener(){
 					
 					public void actionPerformed(ActionEvent e){
-						
 						addArtist = artist.getText();
 						addTitle = trackTitle.getText();
-						addGenre = genre.getText();
-						addDuration = Double.parseDouble(duration.getText());
-						addYear = Integer.parseInt(year.getText());
+						addGenre = (String) genre.getSelectedItem();
+						
+						try{
+							addDuration = Double.parseDouble(duration.getText());
+						}catch(Exception g){
+							g.getMessage();
+						}
+						try{
+							addYear = Integer.parseInt(year.getText());
+						}catch(Exception g){
+							g.getMessage();
+						}
 						
 						Music m = new Music(addArtist, addTitle, addGenre, addDuration, addYear);
-						
-						
-							if(addArtist.isEmpty() || addTitle.isEmpty() || addGenre.isEmpty() || duration.getText().isEmpty() || year.getText().isEmpty())
-							{
-								JOptionPane.showMessageDialog(null, "Please fill in all empty fields.");	
-							}
-							else if (!(music.contains(m)))
-							{
-								music.add(m);
-								JOptionPane.showMessageDialog(null, "Track added");		
 								
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(null, "Track already exists");
-							}
-							
-					}	
-					
+						if(addArtist.isEmpty() || addTitle.isEmpty() || addGenre.isEmpty() || duration.getText().isEmpty() || year.getText().isEmpty()){
+							JOptionPane.showMessageDialog(null, "Please fill in all empty fields.");	
+						}
+						else if (addYear <= 1959 || addYear >= 2011 ){
+							JOptionPane.showMessageDialog(null, "Enter a year between 1960 - 2010");
+						}
+						else if (!(music.contains(m))){
+							music.add(m);
+							JOptionPane.showMessageDialog(null, "Track added");			
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Track already exists");
+						}	
+					}		
 				});
 		
 		//set a background colour for the window
@@ -186,15 +192,12 @@ public class addTrackLayout extends JFrame{
 	}
 	
 	public static void addWindow(){
-		
 		//create a new window from the time line class
-				
-				addTrackLayout add = new addTrackLayout("Add Track");
-				//This tells Java we want to Exit the application on close
-				add.setPreferredSize(new Dimension(700, 550));
-			    add.pack();
-			    add.setLocationRelativeTo(null);
-			    add.setVisible(true);
-					
+			addTrackLayout add = new addTrackLayout("Add Track");
+			//This tells Java we want to Exit the application on close
+			add.setPreferredSize(new Dimension(700, 550));
+		    add.pack();
+		    add.setLocationRelativeTo(null);
+		    add.setVisible(true);				
+			}
 	}
-}
