@@ -17,39 +17,42 @@ import javax.swing.JTextField;
 
 public class addTrackLayout extends JFrame{
 	
-	private JTextField artist; 
+	private JTextField artist;     //Initialising textfields & combobox.
 	private JTextField trackTitle;
 	private JComboBox<String> genre;
 	private JTextField duration;
 	private JTextField year;
 	
-	private JLabel artistLabel;
+	private JLabel artistLabel;  //Initialising field Labels.
 	private JLabel titleLabel;
 	private JLabel genreLabel;
 	private JLabel durationLabel;
 	private JLabel yearLabel;
 	private JLabel addLabel;
 	
-	private String addArtist;
+	private String addArtist;  //Initialising types.
 	private String addTitle;
 	private String addGenre;
 	private double addDuration;
 	private int addYear;
 	
-	// ArrayList<Music> songs;
-	
 	private static final long serialVersionUID = 1L;
+	
+	public static void addWindow(){
+		//create a new window from the time line class
+			addTrackLayout add = new addTrackLayout("Add Track");
+			//This tells Java we want to Exit the application on close
+			add.setPreferredSize(new Dimension(700, 550));
+		    add.pack();
+		    add.setLocationRelativeTo(null);
+		    add.setVisible(true);				
+			}
 
-	public addTrackLayout(String title){
-		
+	public addTrackLayout(String title){	
 		super (title);
-		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new GridBagLayout());
-		
-		String[] genreString = {"Pop", "Rock", "Jazz", "Country", "Rap", "Dance"};
-		
-		//JComboBox<String> genreBox = new JComboBox<String>(genreString);
+		String[] genreString = {"Pop", "Rock", "Jazz", "Country", "Rap", "Dance"}; //Array with strings.
 		
 		addLabel = new JLabel("Add Record");
 		artistLabel = new JLabel("Artist Name:");
@@ -68,36 +71,34 @@ public class addTrackLayout extends JFrame{
 		
 		JButton addButton = new JButton("Add");
 		addButton.setActionCommand("add");
-	
-	    
+	   
 			//Actions for buttons.
 			addButton.addActionListener(new ActionListener(){
 					
 					public void actionPerformed(ActionEvent e){
-						addArtist = artist.getText();
+						addArtist = artist.getText();  //Storing text in to variable
 						addTitle = trackTitle.getText();
 						addGenre = (String) genre.getSelectedItem();
-						
 						try{
-							addDuration = Double.parseDouble(duration.getText());
+							addDuration = Double.parseDouble(duration.getText()); 
 						}catch(Exception g){
-							g.getMessage();
+							g.getMessage();  //Catching exception if field is null
 						}
 						try{
-							addYear = Integer.parseInt(year.getText());
+							addYear = Integer.parseInt(year.getText()); 
 						}catch(Exception g){
-							g.getMessage();
+							g.getMessage();     //Catching exception if field is null
 						}
 						
-						Music m = new Music(addArtist, addTitle, addGenre, addDuration, addYear);
+						Music m = new Music(addArtist, addTitle, addGenre, addDuration, addYear); //Create new music object.
 								
 						if(addArtist.isEmpty() || addTitle.isEmpty() || addGenre.isEmpty() || duration.getText().isEmpty() || year.getText().isEmpty()){
-							JOptionPane.showMessageDialog(null, "Please fill in all empty fields.");	
+							JOptionPane.showMessageDialog(null, "Please fill in all empty fields."); //if textboxes empty, prompt user.
 						}
-						else if (addYear <= 1959 || addYear >= 2011 ){
+						else if (addYear <= 1959 || addYear >= 2011 ){ //Cannot accept years earlier than Eras on timeline.
 							JOptionPane.showMessageDialog(null, "Enter a year between 1960 - 2010");
 						}
-						else if (!(music.contains(m))){
+						else if (!(music.contains(m))){ //If music arraylist does not contain object, add. Using override and hashmap in Music class.
 							music.add(m);
 							JOptionPane.showMessageDialog(null, "Track added");			
 						}
@@ -188,16 +189,6 @@ public class addTrackLayout extends JFrame{
 		contentPane.add(yearLabel, c);
 		
 		setContentPane(contentPane);
-		
 	}
-	
-	public static void addWindow(){
-		//create a new window from the time line class
-			addTrackLayout add = new addTrackLayout("Add Track");
-			//This tells Java we want to Exit the application on close
-			add.setPreferredSize(new Dimension(700, 550));
-		    add.pack();
-		    add.setLocationRelativeTo(null);
-		    add.setVisible(true);				
-			}
-	}
+}
+

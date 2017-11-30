@@ -7,6 +7,7 @@ public class Music {
 	private double duration;
 	private int year;
 	
+	//Constructor for music objects.
 	public Music(String initArtist, String initTitle, String initGenre, double initDuration, int initYear){	
 		artist =  initArtist;
 		title= initTitle;
@@ -33,14 +34,14 @@ public class Music {
 	}
 	
 	@Override
-	public int hashCode(){
+	public int hashCode(){ //Overrides the obects from being placed in a different buckets.
 		int hash = 7;
 		hash = 31 * hash + Objects.hashCode(this.getArtist());
 		hash = 31 * hash + Objects.hashCode(this.getTitle());
 		return hash;
 	}
 	
-	public String getArtist() {
+	public String getArtist() {    //Getters and Setters to call values.
 		return artist;
 	}
 

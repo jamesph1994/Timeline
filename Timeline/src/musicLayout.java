@@ -15,19 +15,19 @@ import javax.swing.JPanel;
 
 public class musicLayout extends JFrame{
 	private static final long	serialVersionUID = 1L;
-	//declaring JLabels
-	private JLabel eraLabel;
+	
+	private JLabel eraLabel;		//declaring JLabels
 	private JLabel artistLabel;
 	private JLabel titleLabel;
 	private JLabel genreLabel;
 	private JLabel durationLabel;
 	private JLabel yearLabel;
 	private int pos = 0; 
-	//Declaring arrayLists
-	ArrayList<Music> era = TimelineLayout.myMusicList;
-	ArrayList<Music> songs;
+
+	ArrayList<Music> era = TimelineLayout.myMusicList;  //Declaring arrayLists
+	ArrayList<Music> songs; 
 	
-	public void navigateRecords(int i){
+	public void navigateRecords(int i){ //navigate records method, called from action methods.
 		artistLabel.setText("Artist: " + songs.get(i).getArtist());
 		titleLabel.setText("Title: " + songs.get(i).getTitle());
 		genreLabel.setText("Genre: " + songs.get(i).getGenre());
@@ -38,8 +38,8 @@ public class musicLayout extends JFrame{
 	public void sixtiesMusic(String timePeriod){
 		songs = new ArrayList<>();
 		
-		for (Music song:era){
-			if (song.getYear() >= 1960 && song.getYear() <= 1969){
+		for (Music song:era){ //loop through arrayList
+			if (song.getYear() >= 1960 && song.getYear() <= 1969){ //If songs year between these numbers, add songs.
 				songs.add(song);
 			}	
 		}
@@ -196,11 +196,10 @@ public class musicLayout extends JFrame{
 		navRightButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){		
 				pos++;
-				
 				if(pos < songs.size()){
-					navigateRecords(pos);
+					navigateRecords(pos); //navigate through records, one at a time.
 				}else{
-					pos = songs.size() - 1;
+					pos = songs.size() - 1; //reach the end, stay at record and prompt user.
 					navigateRecords(pos);
 					JOptionPane.showMessageDialog(null, "No more songs");
 				}
@@ -210,13 +209,12 @@ public class musicLayout extends JFrame{
 		navLeftButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				pos --;
-				
 				if(pos > 0){
-					navigateRecords(pos);
+					navigateRecords(pos); //navigate -1 record if true
 				}else{
 					pos = 0;
 					navigateRecords(pos);
-					JOptionPane.showMessageDialog(null, "No more songs");
+					JOptionPane.showMessageDialog(null, "No more songs"); 
 				}
 			}
 		});
@@ -231,14 +229,14 @@ public class musicLayout extends JFrame{
 
 		navLastButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				pos = era.size() - 1;
+				pos = songs.size() - 1; //Navigate to first element in array (first record).
 				navigateRecords(pos);
 			}
 		});
 		
 		returnButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-					dispose();
+					dispose(); //Close window on click.
 			}
 		});
 		
@@ -246,12 +244,13 @@ public class musicLayout extends JFrame{
 		contentPane.setBackground(Color.WHITE);
 		//Position labels and buttons using grid
 		GridBagConstraints c = new GridBagConstraints();
+		
 		c.fill = GridBagConstraints.PAGE_START;
-		c.gridx = 2;
-		c.gridy = 0;
-		c.insets = new Insets(10, 10, 20, 15);
-		c.gridwidth = 2;
-		contentPane.add(eraLabel, c);
+		c.gridx = 2;	//Horizontal positioning
+		c.gridy = 0;	//Vertical positioning
+		c.insets = new Insets(10, 10, 20, 15);	//grid padding
+		c.gridwidth = 2;	//number of grids used wide.
+		contentPane.add(eraLabel, c);	//add label with co-ordinates to pane.
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;

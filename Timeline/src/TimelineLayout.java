@@ -22,17 +22,17 @@ import java.util.List;
 
 public class TimelineLayout extends JFrame{
 	
-	private static final long	serialVersionUID = 1L;
+	private static final long	serialVersionUID = 1L; //declare version of JFrame
 	private JLabel timelineLabel;
-	static ArrayList<Music> myMusicList = loadPattern();
+	static ArrayList<Music> myMusicList = loadPattern(); //Static arrayList with JSON objects
 	static ArrayList<Music> music = myMusicList;
 	
 	public static void savePattern(ArrayList<Music> music, String filename){	 	
 		String fn;
 	    Gson gson = new Gson();
-	    JsonElement element = gson.toJsonTree(music, new TypeToken<ArrayList<Music>>() {}.getType());
-	    JsonArray jsonArray = element.getAsJsonArray();
-	    String json = gson.toJson(jsonArray);
+	    JsonElement element = gson.toJsonTree(music, new TypeToken<ArrayList<Music>>() {}.getType()); //break down music objects
+	    JsonArray jsonArray = element.getAsJsonArray(); //store parsed objects to array.
+	    String json = gson.toJson(jsonArray); 
 		    
 	    try {
 	    	//write converted json data to a file named "file.json"
@@ -51,28 +51,28 @@ public class TimelineLayout extends JFrame{
 		}
 	 
 	 	public static ArrayList<Music> loadPattern(){
-		    ArrayList<Music> patterns = new ArrayList<>();
+		    ArrayList<Music> musicList = new ArrayList<>();
 		    Gson gson = new Gson();
 		   // JsonParser jsonParser = new JsonParser();
 		    try 
 		    {
-		    	BufferedReader br = new BufferedReader(new FileReader("objects.json"));
-		    	patterns = gson.fromJson(br, new TypeToken<List<Music>>(){}.getType());
+		    	BufferedReader br = new BufferedReader(new FileReader("objects.json")); //read file
+		    	musicList = gson.fromJson(br, new TypeToken<List<Music>>(){}.getType()); //Storing objects in to ArrayList.
 		    }  catch (IOException e){
 		        e.printStackTrace();
 		    }
-			return patterns;
+			return musicList;
 		}
 
 	public TimelineLayout(String title){
-		super(title);
-		JPanel contentPane = new JPanel();
-		contentPane.setLayout(new GridBagLayout());
+		super(title); //Give the window a title constuctor 
+		JPanel contentPane = new JPanel(); //Containter content pane to add designs.
+		contentPane.setLayout(new GridBagLayout()); //Design layout - GridBagLayout.
 		setContentPane(contentPane);
-		timelineLabel = new JLabel("Music Era Timeline");
+		timelineLabel = new JLabel("Music Era Timeline"); //Timeline title label.
 		
-		JButton sixtiesButton = new JButton("60s");
-		sixtiesButton.setActionCommand("60s");
+		JButton sixtiesButton = new JButton("60s"); //Create new buttons for timeline.
+		sixtiesButton.setActionCommand("60s"); 
 		
 		JButton seventiesButton = new JButton("70s");
 		seventiesButton.setActionCommand("70s");
@@ -101,9 +101,9 @@ public class TimelineLayout extends JFrame{
 		sixtiesButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try{
-					Decades.sixtiesWindow();
+					Decades.sixtiesWindow(); //Load sixties window.
 				}catch(Exception g)	{
-					g.getMessage();
+					g.getMessage(); //Catches NumberException if no music exists.
 				}			
 			}
 		});
@@ -111,9 +111,9 @@ public class TimelineLayout extends JFrame{
 		seventiesButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try{
-					Decades.seventiesWindow();
+					Decades.seventiesWindow(); //load 70s window.
 				}catch(Exception g){
-					g.getMessage();
+					g.getMessage(); //Catches NumberException if no music exists.
 				}			
 			}
 		});
@@ -121,9 +121,9 @@ public class TimelineLayout extends JFrame{
 		eightiesButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try{
-					Decades.eightiesWindow();
+					Decades.eightiesWindow(); //Load 80s window
 				}catch(Exception g){
-					g.getMessage();
+					g.getMessage(); //Catches NumberException if no music exists.
 				}			
 			}
 		});
@@ -131,10 +131,10 @@ public class TimelineLayout extends JFrame{
 		ninetiesButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try{
-					Decades.ninetiesWindow();
+					Decades.ninetiesWindow(); //Load 90s window.
 				}catch(Exception g)
 				{
-					g.getMessage();
+					g.getMessage(); //Catches NumberException if no music exists.
 				}			
 			}
 		});
@@ -142,29 +142,29 @@ public class TimelineLayout extends JFrame{
 		twentiesButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try{
-					Decades.noughtiesWindow();
+					Decades.noughtiesWindow(); //Load 00s window.
 				}catch(Exception g)
 				{
-					g.getMessage();
+					g.getMessage(); //Catches NumberException if no music exists.
 				}			
 			}
 		});
 		
 		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				addTrackLayout.addWindow();
+				addTrackLayout.addWindow(); //Open add track window.
 			}
 		});
 		
 		saveButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				savePattern(music, "filee");				
+				savePattern(music, "filee");	//Save added music to JSON.	
 			}
 		});
 		
 		loadButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				loadPattern();
+				loadPattern();  //Load saved music.
 			}
 		});
 
@@ -176,10 +176,10 @@ public class TimelineLayout extends JFrame{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		
 		//position buttons 
-		c.gridx = 1;
-		c.gridy = 2;
-		c.insets = new Insets(10, 5, 10, 5);
-		contentPane.add(sixtiesButton, c);
+		c.gridx = 1; //Horizontal position
+		c.gridy = 2; //Vertical position
+		c.insets = new Insets(10, 5, 10, 5); //Padding of content
+		contentPane.add(sixtiesButton, c); //add button & positioning co-ordinates.
 		
 		c.gridx = 2;
 		c.gridy = 5;
@@ -200,7 +200,7 @@ public class TimelineLayout extends JFrame{
 		c.fill = GridBagConstraints.CENTER;
 		c.gridx = 2;
 		c.gridy = 0;
-		c.gridwidth = 3;
+		c.gridwidth = 3; //How many grids wide.
 		c.insets = new Insets(10, 5, 40, 5);
 		contentPane.add(timelineLabel, c);
 		
